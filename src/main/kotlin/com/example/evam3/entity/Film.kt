@@ -1,7 +1,6 @@
 package com.example.evam3.entity
 
 import jakarta.persistence.*
-
 @Entity
 @Table (name="film")
 class Film {
@@ -12,4 +11,7 @@ class Film {
     var title: String? = null
     var director: String? = null
     var duration: Long? = null
+    var numScene: Long? = null
+    var gender: String? = null
+    var synopsis: String? = null
 }
