@@ -4,6 +4,7 @@ import jakarta.persistence.*
 @Entity
 @Table (name="film")
 class Film {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(updatable = false)

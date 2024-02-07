@@ -25,7 +25,5 @@ class FilmService {
         catch (ex: Exception){
             throw ResponseStatusException(HttpStatus.BAD_REQUEST,ex.message)
         }
-
-
     }
 }
