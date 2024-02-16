@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/characters")
+@CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE])
 class CharactersController {
     @Autowired
     lateinit var charactersService: CharactersService
@@ -22,4 +23,17 @@ class CharactersController {
     fun save (@RequestBody characters: Characters): ResponseEntity<*> {
         return ResponseEntity<Characters>(charactersService.save(characters), HttpStatus.CREATED)
     }
+
+    @PutMapping
+    fun update (@RequestBody characters:Characters):ResponseEntity<Characters>{
+        return ResponseEntity(charactersService.update(characters), HttpStatus.OK)
+    }
+
+    @DeleteMapping("/delete/{id}")
+    fun delete (@PathVariable("id") id: Long):Boolean?{
+        return charactersService.delete(id)
+    }
+
+
+
 }

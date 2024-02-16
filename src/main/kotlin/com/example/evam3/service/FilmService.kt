@@ -26,4 +26,30 @@ class FilmService {
             throw ResponseStatusException(HttpStatus.BAD_REQUEST,ex.message)
         }
     }
+
+    fun update(film: Film): Film{
+        try {
+            filmRepository.findById(film.id)
+                ?: throw Exception("ID no existe")
+
+            return filmRepository.save(film)
+        }
+        catch (ex:Exception){
+            throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
+        }
+    }
+
+
+    fun delete (id: Long?):Boolean?{
+        try{
+            val response = filmRepository.findById(id)
+                ?: throw Exception("ID no existe")
+            filmRepository.deleteById(id!!)
+            return true
+        }
+        catch (ex:Exception){
+            throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
+        }
+    }
+
 }

@@ -11,6 +11,7 @@ class Scene {
     var description: String? = null
     var budget: Double? = null
     var minutes: Long? = null
+    @Column(name="sequence_num")
     var sequenceNum: Long? = null
     @Column(name="film_id")
     var filmId:Long? = null

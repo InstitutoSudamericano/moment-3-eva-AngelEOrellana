@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/scene")
+@CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE])
 class SceneController {
     @Autowired
     lateinit var sceneService: SceneService
@@ -18,8 +19,18 @@ class SceneController {
         return ResponseEntity(sceneService.list(), HttpStatus.OK)
     }
 
+    @PutMapping
+    fun update (@RequestBody scene:Scene):ResponseEntity<Scene>{
+        return ResponseEntity(sceneService.update(scene), HttpStatus.OK)
+    }
+
     @PostMapping
     fun save (@RequestBody scene: Scene): ResponseEntity<*> {
         return ResponseEntity<Scene>(sceneService.save(scene), HttpStatus.CREATED)
+    }
+
+    @DeleteMapping("/delete/{id}")
+    fun delete (@PathVariable("id") id: Long):Boolean?{
+        return sceneService.delete(id)
     }
 }

@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS film(
     title VARCHAR (100),
     director VARCHAR (100),
     duration INT,
-    numScene INT,
+    num_scene INT,
     gender VARCHAR (30),
     synopsis VARCHAR (250),
     PRIMARY KEY (id)
@@ -14,17 +14,17 @@ CREATE TABLE IF NOT EXISTS scene(
     description VARCHAR (100),
     budget INT,
     minutes INT,
-    sequenceNum INT,
+    sequence_num INT,
     film_id INT,
     PRIMARY KEY (id),
     FOREIGN KEY(film_id) REFERENCES film(id)
 );
 
-CREATE TABLE IF NOT EXISTS charaters(
+CREATE TABLE IF NOT EXISTS characters(
     id SERIAL,
     description VARCHAR (100),
-    cost INT,
-    nameChar VARCHAR (40),
+    cost Decimal(4,2),
+    name_char VARCHAR (40),
     scene_id INT,
     PRIMARY KEY (id),
     FOREIGN KEY(scene_id) REFERENCES scene(id)
